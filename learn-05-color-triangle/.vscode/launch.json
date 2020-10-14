@@ -1,0 +1,45 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'learn-05-color-triangle'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=learn-05-color-triangle",
+                    "--package=learn-05-color-triangle"
+                ],
+                "filter": {
+                    "name": "learn-05-color-triangle",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'learn-05-color-triangle'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=learn-05-color-triangle",
+                    "--package=learn-05-color-triangle"
+                ],
+                "filter": {
+                    "name": "learn-05-color-triangle",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        }
+    ]
+}
