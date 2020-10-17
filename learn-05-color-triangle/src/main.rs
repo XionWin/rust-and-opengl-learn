@@ -3,6 +3,8 @@ extern crate sdl2;
 
 pub mod shader;
 
+use std::ffi::CString;
+
 fn main() {
     let sdl = sdl2::init().unwrap();
     let video_subsystem = sdl.video().unwrap();
@@ -30,7 +32,6 @@ fn main() {
     let _gl =
         gl::load_with(|s| video_subsystem.gl_get_proc_address(s) as *const std::os::raw::c_void);
 
-    use std::ffi::CString;
     let vert_shader =
         shader::Shader::from_vert_source(&CString::new(include_str!("triangle.vert")).unwrap())
             .unwrap();
@@ -105,7 +106,7 @@ fn main() {
                 .unwrap()
                 .as_bytes_with_nul()
                 .as_ptr() as *const i8,
-        ) as u32;
+        ) as gl::types::GLuint;
         gl::EnableVertexAttribArray(pos_attrib); // this is "layout (location = 0)" in vertex shader
         gl::VertexAttribPointer(
             pos_attrib, // index of the generic vertex attribute ("layout (location = 0)")
@@ -119,7 +120,7 @@ fn main() {
         let color_attrib = gl::GetAttribLocation(
             shader_program.id,
             CString::new("Color").unwrap().as_bytes_with_nul().as_ptr() as *const i8,
-        ) as u32;
+        ) as gl::types::GLuint;
         gl::EnableVertexAttribArray(color_attrib); // this is "layout (location = 1)" in vertex shader
         gl::VertexAttribPointer(
             color_attrib, // index of the generic vertex attribute ("layout (location = 1)")
@@ -170,7 +171,7 @@ fn main() {
         unsafe {
             gl::BindVertexArray(vao);
             set_rotation_matrix(
-                (timer.ticks() as f32) / 50000.0f32 * std::f32::consts::PI / 2.0f32,
+                (timer.ticks() as f32) / 20000.0f32 * std::f32::consts::PI / 2.0f32,
                 model_mat_location,
             );
             gl::DrawArrays(
