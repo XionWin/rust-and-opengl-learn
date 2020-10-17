@@ -226,13 +226,13 @@ fn resize(w: i32, h: i32, proj_mat_location: gl::types::GLint) {
     // set orthogonal view so that coordinates [-1, 1] area always visible and proportional on x and y axis
     if w > h {
         let f = w as f32 / h as f32;
-        setOrthoMatrix(-f, f, -1.0, 1.0, -1.0, 1.0, proj_mat_location);
+        set_ortho_matrix(-f, f, -1.0, 1.0, -1.0, 1.0, proj_mat_location);
     } else {
         let f = h as f32 / w as f32;
-        setOrthoMatrix(-1.0, 1.0, -f, f, -1.0, 1.0, proj_mat_location);
+        set_ortho_matrix(-1.0, 1.0, -f, f, -1.0, 1.0, proj_mat_location);
     }
 }
-fn setOrthoMatrix(
+fn set_ortho_matrix(
     left: f32,
     right: f32,
     bottom: f32,
