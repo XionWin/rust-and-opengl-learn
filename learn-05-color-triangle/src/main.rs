@@ -50,7 +50,7 @@ fn main() {
     }
 
     // set up vertex buffer object
-    let raudis = 0.9f32;
+    let raudis = 0.8f32;
     let vertices: Vec<f32> = vec![
         // positions                // colors
         ((000f32 / 180f32) * std::f32::consts::PI).cos() * raudis,
