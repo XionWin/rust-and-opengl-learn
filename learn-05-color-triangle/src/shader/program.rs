@@ -2,7 +2,7 @@ use gl;
 use super::Shader;
 
 pub struct Program {
-    id: gl::types::GLuint,
+    pub(crate) id: gl::types::GLuint,
 }
 
 impl Program {
