@@ -155,6 +155,12 @@ fn main() {
         for event in event_pump.poll_iter() {
             match event {
                 sdl2::event::Event::Quit { .. } => break 'main,
+                sdl2::event::Event::KeyDown { keycode, .. } => {
+                    match keycode {
+                        Some(key) => {if key == sdl2::keyboard::Keycode::Q {break 'main;} },
+                        None => {},
+                    }
+                },
                 sdl2::event::Event::Window {
                     win_event: sdl2::event::WindowEvent::Resized(w, h),
                     ..
