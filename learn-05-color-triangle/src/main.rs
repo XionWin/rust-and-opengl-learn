@@ -21,8 +21,9 @@ fn main() {
     gl_attr.set_multisample_buffers(1u8);
     gl_attr.set_multisample_samples(8u8);
 
+    let(wnd_width, wnd_height) = (800, 800);
     let window = video_subsystem
-        .window("Game", 800, 800)
+        .window("Game", wnd_width, wnd_height)
         .opengl()
         .resizable()
         .build()
@@ -45,7 +46,7 @@ fn main() {
     shader_program.set_used();
 
     unsafe {
-        gl::Viewport(0, 0, 800, 800);
+        gl::Viewport(0, 0, wnd_width as i32, wnd_height as i32);
         gl::ClearColor(0.0, 0.0, 0.0, 1.0);
     }
 
@@ -148,6 +149,8 @@ fn main() {
                 .as_ptr() as *const i8,
         );
     }
+
+    resize(wnd_width as i32, wnd_height as i32, proj_mat_location);
 
     let mut timer = sdl.timer().unwrap();
     let mut event_pump = sdl.event_pump().unwrap();
